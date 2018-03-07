@@ -266,7 +266,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1208235544}
   m_Direction: 0
   m_MinValue: 10
-  m_MaxValue: 20
+  m_MaxValue: 50
   m_WholeNumbers: 1
   m_Value: 10
   m_OnValueChanged:
@@ -468,7 +468,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 835061226}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 928744947}
+        m_MethodName: ShutDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &835061226
@@ -1706,7 +1717,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1297169913}
   m_Direction: 0
   m_MinValue: 10
-  m_MaxValue: 20
+  m_MaxValue: 50
   m_WholeNumbers: 1
   m_Value: 10
   m_OnValueChanged:

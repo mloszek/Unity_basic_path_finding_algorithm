@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -18,8 +19,8 @@ public class TitleSceneController : MonoBehaviour
     {
         widthAmount.text = desiredMapWidth.ToString();
         heightAmount.text = desiredMapHeight.ToString();
-        DimensionHolder.width = (int) desiredMapWidth;
-        DimensionHolder.height = (int)desiredMapHeight;
+        MapProperties.width = (int) desiredMapWidth;
+        MapProperties.height = (int) desiredMapHeight;
         noMapWarning.text = "";
     }
 
@@ -32,13 +33,25 @@ public class TitleSceneController : MonoBehaviour
     {
         panel.SetActive(false);
     }
+    
+    public void BeginTheGame()
+    {
+        MapProperties.fields = null;
+        MapProperties.isLoaded = false;
+        SceneManager.LoadScene("GameScene");
+    }
 
     public void LoadMap()
     {
-        //TODO
-        if (true)
+        if (File.Exists(Application.persistentDataPath + "\\save.crp"))
         {
-            noMapWarning.text = "NO MAP FOUND";
+            MapProperties.fields = SaveLoadScript.Load();
+            MapProperties.isLoaded = true;
+            SceneManager.LoadScene("GameScene");
+        }
+        else
+        {
+            StartCoroutine(ShowText("NO MAP FOUND"));
         }
     }
 
@@ -51,18 +64,20 @@ public class TitleSceneController : MonoBehaviour
     {
         widthAmount.text = value.ToString();
         desiredMapWidth = (int) value;
-        DimensionHolder.width = (int) value;
+        MapProperties.width = (int) value;
     }
 
     public void SetHeight(float value)
     {
         heightAmount.text = value.ToString();
         desiredMapHeight = (int) value;
-        DimensionHolder.height = (int) value;
+        MapProperties.height = (int) value;
     }
 
-    public void BeginTheGame()
+    IEnumerator ShowText(string givenSentence)
     {
-        SceneManager.LoadScene("GameScene");
+        noMapWarning.text = givenSentence;
+        yield return new WaitForSeconds(3.0f);
+        noMapWarning.text = "";
     }
 }
