@@ -51,13 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Astar Algorithm\AStarFinder.cs" />
-     <Compile Include="Assets\Scripts\Astar Algorithm\AstarHandler.cs" />
-     <Compile Include="Assets\Scripts\Astar Algorithm\BaseGrid.cs" />
-     <Compile Include="Assets\Scripts\Astar Algorithm\GridPos.cs" />
-     <Compile Include="Assets\Scripts\Astar Algorithm\GridRect.cs" />
-     <Compile Include="Assets\Scripts\Astar Algorithm\Node.cs" />
-     <Compile Include="Assets\Scripts\Astar Algorithm\ParamBase.cs" />
+     <Compile Include="Assets\Scripts\CustomNode.cs" />
+     <Compile Include="Assets\Scripts\DepthFirstAlgorithm.cs" />
      <Compile Include="Assets\Scripts\Generating Map\ClearMapGenerator.cs" />
      <Compile Include="Assets\Scripts\Generating Map\LoadedMapGenerator.cs" />
      <Compile Include="Assets\Scripts\Generating Map\MapGenerator.cs" />

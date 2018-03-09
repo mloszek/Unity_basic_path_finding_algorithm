@@ -23,24 +23,43 @@ public class IngameMenuScript : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    public void Algorithm_1()
+    public void BFS()
     {
-        AstarHandler astar = new AstarHandler(MapProperties.height, MapProperties.width);
-        astar.RunAlgorithm();
-        astar.ShowResultOnMap();
-        if (astar.GetResultLength() == 0)
+        RefreshGrid();
+        RunBFS(false);
+    }
+
+    public void BFSfast()
+    {
+        RefreshGrid();
+        RunBFS(true);
+    }
+
+    private void RunBFS(bool IsFast)
+    {
+        DepthFirstAlgorithm depthFirstAlgorithm;
+
+        if (IsFast)
         {
-            BroadcastPopUp();
+            depthFirstAlgorithm = new DepthFirstAlgorithm(true);
         }
         else
         {
-            ingamePopup.SetActive(false);
-        }        
-    }        
+            depthFirstAlgorithm = new DepthFirstAlgorithm();
+        }
 
-    public void Algorithm_2()
-    {
-        //TODO
+        depthFirstAlgorithm.CreateGrid();
+        depthFirstAlgorithm.Search();
+
+        if (depthFirstAlgorithm.results.Count > 0)
+        {
+            depthFirstAlgorithm.ShowPath();
+            ingamePopup.SetActive(false);
+        }
+        else
+        {
+            BroadcastPopUp();
+        }
     }
 
     public void SaveGame()
@@ -56,6 +75,20 @@ public class IngameMenuScript : MonoBehaviour
     public void BroadcastPopUp()
     {
         StartCoroutine(Broadcast());
+    }
+
+    private void RefreshGrid()
+    {
+        for (int i = 0; i < MapProperties.height; i++)
+        {
+            for (int j = 0; j < MapProperties.width; j++)
+            {
+                if (MapGenerator.gridArray[i][j].name == "f")
+                {
+                    MapGenerator.gridArray[i][j].GetComponent<Renderer>().material.color = Color.white;
+                }
+            }
+        }
     }
 
     IEnumerator Broadcast()
