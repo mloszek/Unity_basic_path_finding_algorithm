@@ -51,8 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\CustomNode.cs" />
-     <Compile Include="Assets\Scripts\DepthFirstAlgorithm.cs" />
      <Compile Include="Assets\Scripts\Generating Map\ClearMapGenerator.cs" />
      <Compile Include="Assets\Scripts\Generating Map\LoadedMapGenerator.cs" />
      <Compile Include="Assets\Scripts\Generating Map\MapGenerator.cs" />
@@ -61,6 +59,10 @@
      <Compile Include="Assets\Scripts\Generating Map\SceneBuilder.cs" />
      <Compile Include="Assets\Scripts\GUI\IngameMenuScript.cs" />
      <Compile Include="Assets\Scripts\GUI\TitleSceneController.cs" />
+     <Compile Include="Assets\Scripts\Pathfinding\BreadthFirstAlgorithm.cs" />
+     <Compile Include="Assets\Scripts\Pathfinding\CustomNode.cs" />
+     <Compile Include="Assets\Scripts\Pathfinding\DepthFirstAlgorithm.cs" />
+     <Compile Include="Assets\Scripts\Pathfinding\PathFindingAlgorithm.cs" />
  <Reference Include="Vuforia.UnityExtensions.Editor">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Editor/Vuforia.UnityExtensions.Editor.dll</HintPath>
  </Reference>

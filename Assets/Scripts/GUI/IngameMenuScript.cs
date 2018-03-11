@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class IngameMenuScript : MonoBehaviour
 {
     public GameObject ingamePopup;
-    public GameObject warningPopup;
+    public GameObject infoPopup;
 
     public void OpenStartPopup()
     {
@@ -26,45 +27,82 @@ public class IngameMenuScript : MonoBehaviour
     public void BFS()
     {
         RefreshGrid();
+
+        var watch = System.Diagnostics.Stopwatch.StartNew();
+
         RunBFS(false);
+
+        watch.Stop();
+        Debug.Log(watch.ElapsedMilliseconds);      
     }
 
     public void BFSfast()
     {
         RefreshGrid();
+
+        var watch = System.Diagnostics.Stopwatch.StartNew();
+
         RunBFS(true);
+
+        watch.Stop();
+        Debug.Log(watch.ElapsedMilliseconds);
     }
 
-    private void RunBFS(bool IsFast)
+    public void DFS()
     {
-        DepthFirstAlgorithm depthFirstAlgorithm;
+        RefreshGrid();
 
-        if (IsFast)
-        {
-            depthFirstAlgorithm = new DepthFirstAlgorithm(true);
-        }
-        else
-        {
-            depthFirstAlgorithm = new DepthFirstAlgorithm();
-        }
+        var watch = System.Diagnostics.Stopwatch.StartNew();
 
+        DepthFirstAlgorithm depthFirstAlgorithm = new DepthFirstAlgorithm();
         depthFirstAlgorithm.CreateGrid();
         depthFirstAlgorithm.Search();
 
         if (depthFirstAlgorithm.results.Count > 0)
         {
-            depthFirstAlgorithm.ShowPath();
             ingamePopup.SetActive(false);
+            depthFirstAlgorithm.ShowPath();
         }
         else
         {
-            BroadcastPopUp();
+            BroadcastInfoPopUp("No available path");
+        }
+
+        watch.Stop();
+        Debug.Log(watch.ElapsedMilliseconds);
+    }
+
+    private void RunBFS(bool IsFast)
+    {
+        BreadthFirstAlgorithm breadthFirstAlgorithm;
+
+        if (IsFast)
+        {
+            breadthFirstAlgorithm = new BreadthFirstAlgorithm(true);
+        }
+        else
+        {
+            breadthFirstAlgorithm = new BreadthFirstAlgorithm();
+        }
+
+        breadthFirstAlgorithm.CreateGrid();
+        breadthFirstAlgorithm.Search();
+
+        if (breadthFirstAlgorithm.results.Count > 0)
+        {
+            ingamePopup.SetActive(false);
+            breadthFirstAlgorithm.ShowPath();
+        }
+        else
+        {
+            BroadcastInfoPopUp("No available path");
         }
     }
 
     public void SaveGame()
     {
         SaveLoadScript.Save();
+        BroadcastInfoPopUp("Successfully saved");
     }
 
     public void GoToTitleScene()
@@ -72,9 +110,9 @@ public class IngameMenuScript : MonoBehaviour
         SceneManager.LoadScene("TitleScene");
     }
 
-    public void BroadcastPopUp()
+    public void BroadcastInfoPopUp(string info)
     {
-        StartCoroutine(Broadcast());
+        StartCoroutine(Broadcast(info));
     }
 
     private void RefreshGrid()
@@ -91,10 +129,11 @@ public class IngameMenuScript : MonoBehaviour
         }
     }
 
-    IEnumerator Broadcast()
+    IEnumerator Broadcast(string info)
     {
-        warningPopup.SetActive(true);
+        infoPopup.SetActive(true);
+        infoPopup.GetComponentInChildren<Text>().text = info;
         yield return new WaitForSeconds(1.5f);
-        warningPopup.SetActive(false);
+        infoPopup.SetActive(false);
     }
 }

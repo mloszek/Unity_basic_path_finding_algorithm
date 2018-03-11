@@ -11,7 +11,7 @@ public class ClearMapGenerator : MapGenerator
 
     public override void CreateObstacles()
     {
-        var amountOfObstacles = (int)((MapProperties.height * MapProperties.width) / 4);
+        var amountOfObstacles = ((MapProperties.height * MapProperties.width) / 4);
         var randY = 0;
         var randX = 0;
 
@@ -33,7 +33,7 @@ public class ClearMapGenerator : MapGenerator
         var i = 0;
         int size = 0;
 
-        if (x < MapProperties.height - 2 && y < MapProperties.width - 2)
+        if (x < MapProperties.height - 1 && y < MapProperties.width - 1)
         {
             i = Random.Range(0, 4);
             switch (i)
@@ -56,7 +56,7 @@ public class ClearMapGenerator : MapGenerator
                     break;
             }
         }
-        else if (x < MapProperties.height - 2 && y == MapProperties.width - 2)
+        else if (x < MapProperties.height - 1 && y == MapProperties.width - 1)
         {
             i = Random.Range(0, 2);
             switch (i)
@@ -71,7 +71,7 @@ public class ClearMapGenerator : MapGenerator
                     break;
             }
         }
-        else if (x == MapProperties.height - 2 && y < MapProperties.width - 2)
+        else if (x == MapProperties.height - 1 && y < MapProperties.width - 1)
         {
             i = Random.Range(0, 2);
             switch (i)
@@ -131,8 +131,16 @@ public class ClearMapGenerator : MapGenerator
     public override void CreateStartAndFinish()
     {
         GameObject singleGridTile;
+
         int randomX = Random.Range(0, MapProperties.width);
         int randomY = Random.Range(0, MapProperties.height);
+
+        while (gridArray[randomY][randomX].name == "o")
+        {
+            randomX = Random.Range(0, MapProperties.width);
+            randomY = Random.Range(0, MapProperties.height);
+        }
+
         singleGridTile = gridArray[randomY][randomX];
         singleGridTile.GetComponent<Renderer>().material.color = Color.yellow;
         singleGridTile.name = "s";

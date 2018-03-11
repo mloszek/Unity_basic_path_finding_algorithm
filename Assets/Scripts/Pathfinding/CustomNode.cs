@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class CustomNode
 {
     public int x;
@@ -14,7 +11,7 @@ public class CustomNode
     {
         this.x = x;
         this.y = y;
-		this.isVisited = false;
+		isVisited = false;
     }
 
     public override int GetHashCode()
