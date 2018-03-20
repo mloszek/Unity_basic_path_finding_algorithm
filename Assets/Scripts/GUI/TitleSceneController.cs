@@ -10,17 +10,21 @@ public class TitleSceneController : MonoBehaviour
     public GameObject panel;
     public Text widthAmount;
     public Text heightAmount;
+    public Text difficultyLevel;
     public Text noMapWarning;
 
     private int desiredMapWidth = 10;
     private int desiredMapHeight = 10;
+    private int desiredDifficulty = 6;
 
     void Start()
     {
         widthAmount.text = desiredMapWidth.ToString();
         heightAmount.text = desiredMapHeight.ToString();
+        difficultyLevel.text = "Easy";
         MapProperties.width = (int) desiredMapWidth;
         MapProperties.height = (int) desiredMapHeight;
+        MapProperties.difficulty = (int) desiredDifficulty;
         noMapWarning.text = "";
     }
 
@@ -70,6 +74,33 @@ public class TitleSceneController : MonoBehaviour
         heightAmount.text = value.ToString();
         desiredMapHeight = (int) value;
         MapProperties.height = (int) value;
+    }
+
+    public void SetDifficulty(float value)
+    {
+        var currentDifficulty = 8 - value;
+
+        switch ((int) currentDifficulty)
+        {
+            case 6:
+                difficultyLevel.text = "Easy";
+                break;
+            case 5:
+                difficultyLevel.text = "Medium";
+                break;
+            case 4:
+                difficultyLevel.text = "Hard";
+                break;
+            case 3:
+                difficultyLevel.text = "Violently";
+                break;
+            case 2:
+                difficultyLevel.text = "Melting";
+                break;
+        }
+
+        desiredDifficulty = (int) currentDifficulty;
+        MapProperties.difficulty = (int) currentDifficulty;
     }
 
     IEnumerator ShowText(string givenSentence)

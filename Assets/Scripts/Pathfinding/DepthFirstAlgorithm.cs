@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class DepthFirstAlgorithm : PathFindingAlgorithm
 {
-    public DepthFirstAlgorithm()
+    public DepthFirstAlgorithm(int height, int width) : base(height, width)
     {
-        vertices = new CustomNode[MapProperties.height][];
+        vertices = new CustomNode[height][];
         results = new List<CustomNode>();
         IsSearching = true;
     }

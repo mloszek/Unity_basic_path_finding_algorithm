@@ -5,42 +5,14 @@ public class BreadthFirstAlgorithm : PathFindingAlgorithm
 {
     private Queue<CustomNode> queue;
     private CustomNode node;
+    private bool isFastExit;
 
-    private delegate bool IsFastEnd();
-    private static event IsFastEnd Conditions;
-
-    public BreadthFirstAlgorithm()
+    public BreadthFirstAlgorithm(int height, int width, bool isFast) : base (height, width)
     {
-        InitializeAlgorithm();
-        Conditions += IsQueueCountPositive;
-    }
-
-    public BreadthFirstAlgorithm(bool fastEnd)
-    {
-        InitializeAlgorithm();
-        Conditions += IsQueueCountPositive;
-        if (fastEnd)
-        {
-            Conditions += IsStillSearching;
-        }
-    }
-
-    private void InitializeAlgorithm()
-    {
-        vertices = new CustomNode[MapProperties.height][];
+        vertices = new CustomNode[height][];
         queue = new Queue<CustomNode>();
         results = new List<CustomNode>();
-        IsSearching = true;
-    }
-
-    public bool IsQueueCountPositive()
-    {
-        return queue.Count > 0;
-    }
-
-    public bool IsStillSearching()
-    {
-        return IsSearching;
+        isFastExit = isFast;
     }
 
     public override void Search()
@@ -58,7 +30,7 @@ public class BreadthFirstAlgorithm : PathFindingAlgorithm
 
     private void CheckVicinity()
     {
-        while (Conditions())
+        while (queue.Count > 0)
         {
             node = queue.Dequeue();
 
@@ -78,6 +50,11 @@ public class BreadthFirstAlgorithm : PathFindingAlgorithm
                     {
                         IsSearching = false;
                         Rewind(n.parent);
+                        if (isFastExit)
+                        {
+                            queue.Clear();
+                        }
+                        break;
                     }
                     else
                     {

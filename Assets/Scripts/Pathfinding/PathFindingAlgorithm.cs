@@ -6,19 +6,28 @@ public abstract class PathFindingAlgorithm
 {
     public List<CustomNode> results;
 
+    protected int MapHeight;
+    protected int MapWidth;
+
     protected CustomNode[][] vertices;
     protected CustomNode startNode;
     protected CustomNode endNode;
     protected bool IsSearching;
 
+    protected PathFindingAlgorithm(int height, int width)
+    {
+        MapHeight = height;
+        MapWidth = width;
+    }
+
     public void CreateGrid()
     {
-        for (int i = 0; i < MapProperties.height; i++)
+        for (int i = 0; i < MapHeight; i++)
         {
 
-            vertices[i] = new CustomNode[MapProperties.width];
+            vertices[i] = new CustomNode[MapWidth];
 
-            for (int j = 0; j < MapProperties.width; j++)
+            for (int j = 0; j < MapWidth; j++)
             {
 
                 vertices[i][j] = new CustomNode(i, j);
@@ -50,7 +59,7 @@ public abstract class PathFindingAlgorithm
     protected void Rewind(CustomNode pathNode)
     {
         results.Add(pathNode);
-        if (pathNode.parent != startNode)
+        if (pathNode != startNode && pathNode.parent != startNode)
         {
             Rewind(pathNode.parent);
         }

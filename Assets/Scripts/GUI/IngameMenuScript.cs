@@ -54,7 +54,7 @@ public class IngameMenuScript : MonoBehaviour
 
         var watch = System.Diagnostics.Stopwatch.StartNew();
 
-        DepthFirstAlgorithm depthFirstAlgorithm = new DepthFirstAlgorithm();
+        DepthFirstAlgorithm depthFirstAlgorithm = new DepthFirstAlgorithm(MapProperties.height, MapProperties.width);
         depthFirstAlgorithm.CreateGrid();
         depthFirstAlgorithm.Search();
 
@@ -65,6 +65,7 @@ public class IngameMenuScript : MonoBehaviour
         }
         else
         {
+            depthFirstAlgorithm.ShowPath();
             BroadcastInfoPopUp("No available path");
         }
 
@@ -78,11 +79,11 @@ public class IngameMenuScript : MonoBehaviour
 
         if (IsFast)
         {
-            breadthFirstAlgorithm = new BreadthFirstAlgorithm(true);
+            breadthFirstAlgorithm = new BreadthFirstAlgorithm(MapProperties.height, MapProperties.width, true);
         }
         else
         {
-            breadthFirstAlgorithm = new BreadthFirstAlgorithm();
+            breadthFirstAlgorithm = new BreadthFirstAlgorithm(MapProperties.height, MapProperties.width, false);
         }
 
         breadthFirstAlgorithm.CreateGrid();
@@ -95,6 +96,7 @@ public class IngameMenuScript : MonoBehaviour
         }
         else
         {
+            breadthFirstAlgorithm.ShowPath();
             BroadcastInfoPopUp("No available path");
         }
     }

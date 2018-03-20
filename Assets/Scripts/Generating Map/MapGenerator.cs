@@ -1,9 +1,17 @@
-﻿using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class MapGenerator : ScriptableObject
+public abstract class MapGenerator
 {
+    protected static int MapHeight;
+    protected static int MapWidth;
+
     public static GameObject[][] gridArray;
+
+    public MapGenerator(int height, int width)
+    {
+        MapHeight = height;
+        MapWidth = width;        
+    }
 
     public virtual void CreateMap(GameObject field)
     {
@@ -15,8 +23,8 @@ public abstract class MapGenerator : ScriptableObject
 
     protected void GenerateGrid(GameObject field, out GameObject[][] gridArray)
     {
-        var height = MapProperties.height;
-        var width = MapProperties.width;        
+        var height = MapHeight;
+        var width = MapWidth;        
 
         GameObject[][] tempArray = new GameObject[height][];
 
@@ -25,9 +33,9 @@ public abstract class MapGenerator : ScriptableObject
             tempArray[i] = new GameObject[width];
             for (int j = 0; j < width; j++)
             {
-                var singleGridElement = Instantiate(field, new Vector3(j * 1.1f, 0, i * 1.1f), Quaternion.Euler(90, 0, 0));
+                GameObject singleGridElement = Object.Instantiate(field, new Vector3(j * 1.1f, 0, i * 1.1f), Quaternion.Euler(90, 0, 0));
                 singleGridElement.name = "f";
-                tempArray[i][j] = (GameObject) singleGridElement;
+                tempArray[i][j] = singleGridElement;
             }
         }
         gridArray = tempArray;

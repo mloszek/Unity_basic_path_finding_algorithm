@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Pathfinding\BreadthFirstAlgorithm.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\CustomNode.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\DepthFirstAlgorithm.cs" />
+     <Compile Include="Assets\Scripts\Pathfinding\INode.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\PathFindingAlgorithm.cs" />
  <Reference Include="Vuforia.UnityExtensions.Editor">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Editor/Vuforia.UnityExtensions.Editor.dll</HintPath>

@@ -2,8 +2,10 @@
 using UnityEngine;
 
 public class LoadedMapGenerator : MapGenerator
-{
+{    
     private char[] fieldsFromSave;
+
+    public LoadedMapGenerator(int height, int width) : base(height, width){}
 
     public override void CreateMap(GameObject field)
     {

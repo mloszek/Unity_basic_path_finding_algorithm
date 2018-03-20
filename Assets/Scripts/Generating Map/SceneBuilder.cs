@@ -12,10 +12,8 @@ public class SceneBuilder : MonoBehaviour
 
     void Start()
     {
-        m_camera = GameObject.FindGameObjectWithTag("MainCamera");
-        clearMap = ScriptableObject.CreateInstance<ClearMapGenerator>();
-        loadedMap = ScriptableObject.CreateInstance<LoadedMapGenerator>();
-
+        m_camera = GameObject.FindGameObjectWithTag("MainCamera");       
+        
         GenerateMap();
         SetCamera(m_camera.GetComponent<Camera>());
     }
@@ -24,11 +22,13 @@ public class SceneBuilder : MonoBehaviour
     {
         if (!MapProperties.isLoaded)
         {
+            clearMap = new ClearMapGenerator(MapProperties.height, MapProperties.width, MapProperties.difficulty);
             clearMap.CreateMap(field);
         }
         else
         {
             SaveLoadScript.Load();
+            loadedMap = new LoadedMapGenerator(MapProperties.height, MapProperties.width);
             loadedMap.CreateMap(field);
         }
     }
