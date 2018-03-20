@@ -2,6 +2,7 @@
 
 public class ClearMapGenerator : MapGenerator
 {
+    private GameObject m_obstacle;
     private int MapDifficulty;
 
     public ClearMapGenerator(int height, int width, int difficulty) : base(height, width)
@@ -14,12 +15,12 @@ public class ClearMapGenerator : MapGenerator
     public override void CreateMap(GameObject field)
     {
         base.CreateMap(field);
-        CreateObstacles();
-        CreateStartAndFinish();
     }
 
-    public override void CreateObstacles()
+    public override void CreateObstacles(GameObject obstacle)
     {
+        m_obstacle = obstacle;
+
         var amountOfObstacles = ((MapHeight * MapWidth) / MapDifficulty);
         var randY = 0;
         var randX = 0;
@@ -105,54 +106,96 @@ public class ClearMapGenerator : MapGenerator
 
     private void Place2x2(int x, int y)
     {
-        gridArray[x][y].name = "o";
+        GameObject singleObstacle;
+
+        var position = gridArray[x][y].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x][y]);
+        gridArray[x][y] = singleObstacle;
         gridArray[x][y].GetComponent<Renderer>().material.color = Color.black;
-        gridArray[x + 1][y + 1].name = "o";
+
+        position = gridArray[x + 1][y + 1].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x + 1][y + 1]);
+        gridArray[x + 1][y + 1] = singleObstacle;
         gridArray[x + 1][y + 1].GetComponent<Renderer>().material.color = Color.black;
-        gridArray[x + 1][y].name = "o";
+
+        position = gridArray[x + 1][y].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x + 1][y]);
+        gridArray[x + 1][y] = singleObstacle;
         gridArray[x + 1][y].GetComponent<Renderer>().material.color = Color.black;
-        gridArray[x][y + 1].name = "o";
+
+        position = gridArray[x][y + 1].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x][y + 1]);
+        gridArray[x][y + 1] = singleObstacle;
         gridArray[x][y + 1].GetComponent<Renderer>().material.color = Color.black;
     }
 
     private void Place2x1(int x, int y)
     {
-        gridArray[x][y].name = "o";
+        GameObject singleObstacle;
+
+        var position = gridArray[x][y].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x][y]);
+        gridArray[x][y] = singleObstacle;
         gridArray[x][y].GetComponent<Renderer>().material.color = Color.black;
-        gridArray[x + 1][y].name = "o";
+
+        position = gridArray[x + 1][y].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x + 1][y]);
+        gridArray[x + 1][y] = singleObstacle;
         gridArray[x + 1][y].GetComponent<Renderer>().material.color = Color.black;
     }
 
     private void Place1x2(int x, int y)
     {
-        gridArray[x][y].name = "o";
+        GameObject singleObstacle;
+
+        var position = gridArray[x][y].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x][y]);
+        gridArray[x][y] = singleObstacle;
         gridArray[x][y].GetComponent<Renderer>().material.color = Color.black;
-        gridArray[x][y + 1].name = "o";
+
+        position = gridArray[x][y + 1].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x][y + 1]);
+        gridArray[x][y + 1] = singleObstacle;
         gridArray[x][y + 1].GetComponent<Renderer>().material.color = Color.black;
     }
 
     private void PlacePoint(int x, int y)
     {
-        gridArray[x][y].name = "o";
+        GameObject singleObstacle;
+
+        var position = gridArray[x][y].transform.position;
+        singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[x][y]);
+        gridArray[x][y] = singleObstacle;
         gridArray[x][y].GetComponent<Renderer>().material.color = Color.black;
     }
 
-    public override void CreateStartAndFinish()
+    public override void CreateStartAndFinish(GameObject start, GameObject end)
     {
-        GameObject singleGridTile;
+        GameObject singleGridElement;
 
         int randomX = Random.Range(0, MapWidth);
         int randomY = Random.Range(0, MapHeight);
 
-        while (gridArray[randomY][randomX].name == "o")
+        while (gridArray[randomY][randomX].tag == "obstacle")
         {
             randomX = Random.Range(0, MapWidth);
             randomY = Random.Range(0, MapHeight);
         }
 
-        singleGridTile = gridArray[randomY][randomX];
-        singleGridTile.GetComponent<Renderer>().material.color = Color.yellow;
-        singleGridTile.name = "s";
+        var position = gridArray[randomY][randomX].transform.position;
+        singleGridElement = Object.Instantiate(start, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[randomY][randomX]);
+        gridArray[randomY][randomX] = singleGridElement;
+        gridArray[randomY][randomX].GetComponent<Renderer>().material.color = Color.yellow;
 
         int finishRandomX = randomX;
         int finishRandomY = randomY;
@@ -163,8 +206,10 @@ public class ClearMapGenerator : MapGenerator
             finishRandomY = Random.Range(0, MapHeight);
         }
 
-        singleGridTile = gridArray[Random.Range(0, MapHeight)][Random.Range(0, MapWidth)];
-        singleGridTile.GetComponent<Renderer>().material.color = Color.blue;
-        singleGridTile.name = "e";
+        position = gridArray[finishRandomY][finishRandomX].transform.position;
+        singleGridElement = Object.Instantiate(end, position, Quaternion.Euler(90, 0, 0));
+        Object.Destroy(gridArray[finishRandomY][finishRandomX]);
+        gridArray[finishRandomY][finishRandomX] = singleGridElement;
+        gridArray[finishRandomY][finishRandomX].GetComponent<Renderer>().material.color = Color.blue;
     }
 }

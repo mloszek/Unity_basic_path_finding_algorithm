@@ -28,7 +28,7 @@ public static class SaveLoadScript
         {
             for (int j = 0; j < gridArray[i].Length; j++)
             {
-                gridOrder.Append(gridArray[i][j].name);
+                gridOrder.Append(gridArray[i][j].tag.Substring(0, 1));
             }
         }
         gridOrder.Append("@");

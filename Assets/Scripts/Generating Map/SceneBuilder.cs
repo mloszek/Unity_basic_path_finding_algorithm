@@ -4,6 +4,9 @@ using UnityEngine;
 public class SceneBuilder : MonoBehaviour
 {
     public GameObject field;
+    public GameObject obstacle;
+    public GameObject start;
+    public GameObject end;
 
     private GameObject m_camera;
     private ClearMapGenerator clearMap;
@@ -24,12 +27,16 @@ public class SceneBuilder : MonoBehaviour
         {
             clearMap = new ClearMapGenerator(MapProperties.height, MapProperties.width, MapProperties.difficulty);
             clearMap.CreateMap(field);
+            clearMap.CreateObstacles(obstacle);
+            clearMap.CreateStartAndFinish(start, end);
         }
         else
         {
             SaveLoadScript.Load();
             loadedMap = new LoadedMapGenerator(MapProperties.height, MapProperties.width);
             loadedMap.CreateMap(field);
+            loadedMap.CreateObstacles(obstacle);
+            loadedMap.CreateStartAndFinish(start, end);
         }
     }
 

@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 64429556152214332}
   - component: {fileID: 23789868281679074}
   m_Layer: 0
-  m_Name: Field
-  m_TagString: field
+  m_Name: StartField
+  m_TagString: start
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

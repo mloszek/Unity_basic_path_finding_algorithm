@@ -18,8 +18,8 @@ public abstract class MapGenerator
         GenerateGrid(field, out gridArray);
     }
 
-    public abstract void CreateStartAndFinish();
-    public abstract void CreateObstacles();
+    public abstract void CreateStartAndFinish(GameObject start, GameObject finish);
+    public abstract void CreateObstacles(GameObject obstacle);
 
     protected void GenerateGrid(GameObject field, out GameObject[][] gridArray)
     {
@@ -34,7 +34,6 @@ public abstract class MapGenerator
             for (int j = 0; j < width; j++)
             {
                 GameObject singleGridElement = Object.Instantiate(field, new Vector3(j * 1.1f, 0, i * 1.1f), Quaternion.Euler(90, 0, 0));
-                singleGridElement.name = "f";
                 tempArray[i][j] = singleGridElement;
             }
         }

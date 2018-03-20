@@ -32,16 +32,20 @@ public abstract class PathFindingAlgorithm
 
                 vertices[i][j] = new CustomNode(i, j);
 
-                if (MapGenerator.gridArray[i][j].name != "o")
+                if (MapGenerator.gridArray[i][j].tag != "obstacle")
                 {
                     vertices[i][j].isWalkable = true;
                 }
 
-                if (MapGenerator.gridArray[i][j].name == "s")
+                if (MapGenerator.gridArray[i][j].tag == "start")
+                {
                     startNode = vertices[i][j];
+                }
 
-                if (MapGenerator.gridArray[i][j].name == "e")
+                if (MapGenerator.gridArray[i][j].tag == "end")
+                {
                     endNode = vertices[i][j];
+                }
             }
         }
     }

@@ -1465,6 +1465,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field: {fileID: 1981556332234196, guid: ed1f177452e03db43a394a51149e00de, type: 2}
+  obstacle: {fileID: 1981556332234196, guid: 0d3ecbacfc44c974fad2e8449b4a4535, type: 2}
+  start: {fileID: 1981556332234196, guid: d9f59f9447cb2814387306a3ca454b38, type: 2}
+  end: {fileID: 1981556332234196, guid: 9ca2eabd62ed9274891ffeca9516d6ce, type: 2}
 --- !u!1 &1274995010
 GameObject:
   m_ObjectHideFlags: 0
