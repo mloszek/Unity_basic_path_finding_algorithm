@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_basic_path_finding_algorithm-91cda00dbdb9ef74e06e9013e96d91cf9101bf99", "Assembly-CSharp.csproj", "{D3AA56A2-A16D-064C-E307-E6C328AA41AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3AA56A2-A16D-064C-E307-E6C328AA41AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3AA56A2-A16D-064C-E307-E6C328AA41AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3AA56A2-A16D-064C-E307-E6C328AA41AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3AA56A2-A16D-064C-E307-E6C328AA41AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
