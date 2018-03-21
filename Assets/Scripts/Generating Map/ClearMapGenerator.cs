@@ -112,25 +112,21 @@ public class ClearMapGenerator : MapGenerator
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x][y]);
         gridArray[x][y] = singleObstacle;
-        gridArray[x][y].GetComponent<Renderer>().material.color = Color.black;
 
         position = gridArray[x + 1][y + 1].transform.position;
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x + 1][y + 1]);
         gridArray[x + 1][y + 1] = singleObstacle;
-        gridArray[x + 1][y + 1].GetComponent<Renderer>().material.color = Color.black;
 
         position = gridArray[x + 1][y].transform.position;
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x + 1][y]);
         gridArray[x + 1][y] = singleObstacle;
-        gridArray[x + 1][y].GetComponent<Renderer>().material.color = Color.black;
 
         position = gridArray[x][y + 1].transform.position;
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x][y + 1]);
         gridArray[x][y + 1] = singleObstacle;
-        gridArray[x][y + 1].GetComponent<Renderer>().material.color = Color.black;
     }
 
     private void Place2x1(int x, int y)
@@ -141,13 +137,11 @@ public class ClearMapGenerator : MapGenerator
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x][y]);
         gridArray[x][y] = singleObstacle;
-        gridArray[x][y].GetComponent<Renderer>().material.color = Color.black;
 
         position = gridArray[x + 1][y].transform.position;
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x + 1][y]);
         gridArray[x + 1][y] = singleObstacle;
-        gridArray[x + 1][y].GetComponent<Renderer>().material.color = Color.black;
     }
 
     private void Place1x2(int x, int y)
@@ -158,13 +152,11 @@ public class ClearMapGenerator : MapGenerator
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x][y]);
         gridArray[x][y] = singleObstacle;
-        gridArray[x][y].GetComponent<Renderer>().material.color = Color.black;
 
         position = gridArray[x][y + 1].transform.position;
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x][y + 1]);
         gridArray[x][y + 1] = singleObstacle;
-        gridArray[x][y + 1].GetComponent<Renderer>().material.color = Color.black;
     }
 
     private void PlacePoint(int x, int y)
@@ -175,7 +167,6 @@ public class ClearMapGenerator : MapGenerator
         singleObstacle = Object.Instantiate(m_obstacle, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[x][y]);
         gridArray[x][y] = singleObstacle;
-        gridArray[x][y].GetComponent<Renderer>().material.color = Color.black;
     }
 
     public override void CreateStartAndFinish(GameObject start, GameObject end)
@@ -195,7 +186,6 @@ public class ClearMapGenerator : MapGenerator
         singleGridElement = Object.Instantiate(start, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[randomY][randomX]);
         gridArray[randomY][randomX] = singleGridElement;
-        gridArray[randomY][randomX].GetComponent<Renderer>().material.color = Color.yellow;
 
         int finishRandomX = randomX;
         int finishRandomY = randomY;
@@ -210,6 +200,5 @@ public class ClearMapGenerator : MapGenerator
         singleGridElement = Object.Instantiate(end, position, Quaternion.Euler(90, 0, 0));
         Object.Destroy(gridArray[finishRandomY][finishRandomX]);
         gridArray[finishRandomY][finishRandomX] = singleGridElement;
-        gridArray[finishRandomY][finishRandomX].GetComponent<Renderer>().material.color = Color.blue;
     }
 }

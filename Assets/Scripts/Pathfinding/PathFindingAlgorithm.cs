@@ -56,8 +56,6 @@ public abstract class PathFindingAlgorithm
         {
             TilePaint(n, new Color(1, 0.4f, 0.4f, 1));
         }
-        TilePaint(startNode, Color.yellow);
-        TilePaint(endNode, Color.blue);
     }
 
     protected void Rewind(CustomNode pathNode)
@@ -71,8 +69,11 @@ public abstract class PathFindingAlgorithm
 
     protected void TilePaint(CustomNode paintNode, Color color)
     {
-        MapGenerator.gridArray[paintNode.x][paintNode.y].GetComponent<Renderer>()
-                .material.color = color;
+        if (paintNode != startNode && paintNode != endNode)
+        {
+            MapGenerator.gridArray[paintNode.x][paintNode.y].GetComponent<Renderer>()
+                    .material.color = color;
+        }
     }
 
     public abstract void Search();

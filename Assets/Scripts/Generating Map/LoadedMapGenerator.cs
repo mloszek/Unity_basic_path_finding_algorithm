@@ -15,16 +15,16 @@ public class LoadedMapGenerator : MapGenerator
 
     public override void CreateObstacles(GameObject obstacle)
     {
-        DrawMapElements('o', obstacle, Color.black);
+        DrawMapElements('o', obstacle);
     }
 
     public override void CreateStartAndFinish(GameObject start, GameObject end)
     {
-        DrawMapElements('s', start, Color.yellow);
-        DrawMapElements('e', end, Color.blue);
+        DrawMapElements('s', start);
+        DrawMapElements('e', end);
     }
 
-    private void DrawMapElements(char sign, GameObject field, Color color)
+    private void DrawMapElements(char sign, GameObject field)
     {
         GameObject singleObstacle;
         var index = 0;
@@ -39,7 +39,6 @@ public class LoadedMapGenerator : MapGenerator
                     singleObstacle = UnityEngine.Object.Instantiate(field, position, Quaternion.Euler(90, 0, 0));
                     UnityEngine.Object.Destroy(gridArray[i][j]);
                     gridArray[i][j] = singleObstacle;
-                    gridArray[i][j].GetComponent<Renderer>().material.color = color;
                 }
             }
         }
