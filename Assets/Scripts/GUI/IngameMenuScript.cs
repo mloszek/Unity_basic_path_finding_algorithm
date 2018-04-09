@@ -54,7 +54,7 @@ public class IngameMenuScript : MonoBehaviour
 
         var watch = System.Diagnostics.Stopwatch.StartNew();
 
-        DepthFirstAlgorithm depthFirstAlgorithm = new DepthFirstAlgorithm(MapProperties.height, MapProperties.width);
+        DepthFirstAlgorithm depthFirstAlgorithm = new DepthFirstAlgorithm(MapProperties.height, MapProperties.width, MapGenerator.gridArray);
         depthFirstAlgorithm.CreateGrid();
         depthFirstAlgorithm.Search();
 
@@ -79,11 +79,11 @@ public class IngameMenuScript : MonoBehaviour
 
         if (IsFast)
         {
-            breadthFirstAlgorithm = new BreadthFirstAlgorithm(MapProperties.height, MapProperties.width, true);
+            breadthFirstAlgorithm = new BreadthFirstAlgorithm(MapProperties.height, MapProperties.width, MapGenerator.gridArray, true);
         }
         else
         {
-            breadthFirstAlgorithm = new BreadthFirstAlgorithm(MapProperties.height, MapProperties.width, false);
+            breadthFirstAlgorithm = new BreadthFirstAlgorithm(MapProperties.height, MapProperties.width, MapGenerator.gridArray, false);
         }
 
         breadthFirstAlgorithm.CreateGrid();

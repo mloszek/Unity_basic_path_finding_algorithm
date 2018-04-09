@@ -7,7 +7,7 @@ public class BreadthFirstAlgorithm : PathFindingAlgorithm
     private CustomNode node;
     private bool isFastExit;
 
-    public BreadthFirstAlgorithm(int height, int width, bool isFast) : base (height, width)
+    public BreadthFirstAlgorithm(int height, int width, GameObject[][] passedArray, bool isFast) : base (height, width, passedArray)
     {
         vertices = new CustomNode[height][];
         queue = new Queue<CustomNode>();

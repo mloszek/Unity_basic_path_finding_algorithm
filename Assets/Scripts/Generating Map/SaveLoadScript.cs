@@ -17,6 +17,7 @@ public static class SaveLoadScript
         savedMap =  File.ReadAllText(Application.persistentDataPath + "\\save.crp").Split('@');
         MapProperties.width = Int32.Parse(savedMap[1]);
         MapProperties.height = Int32.Parse(savedMap[2]);
+        MapProperties.difficulty = Int32.Parse(savedMap[3]);
     }
 
     public static string MakeSave()
@@ -35,6 +36,8 @@ public static class SaveLoadScript
         gridOrder.Append(gridArray[0].Length);
         gridOrder.Append("@");
         gridOrder.Append(gridArray.Length);
+        gridOrder.Append("@");
+        gridOrder.Append(MapProperties.difficulty);
 
         return gridOrder.ToString();
     }

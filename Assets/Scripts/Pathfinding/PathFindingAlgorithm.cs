@@ -14,10 +14,13 @@ public abstract class PathFindingAlgorithm
     protected CustomNode endNode;
     protected bool IsSearching;
 
-    protected PathFindingAlgorithm(int height, int width)
+    protected GameObject[][] gridArray;
+
+    protected PathFindingAlgorithm(int height, int width, GameObject[][] passedArray)
     {
         MapHeight = height;
         MapWidth = width;
+        gridArray = passedArray;
     }
 
     public void CreateGrid()
@@ -32,17 +35,17 @@ public abstract class PathFindingAlgorithm
 
                 vertices[i][j] = new CustomNode(i, j);
 
-                if (MapGenerator.gridArray[i][j].tag != "obstacle")
+                if (gridArray[i][j].tag != "obstacle")
                 {
                     vertices[i][j].isWalkable = true;
                 }
 
-                if (MapGenerator.gridArray[i][j].tag == "start")
+                if (gridArray[i][j].tag == "start")
                 {
                     startNode = vertices[i][j];
                 }
 
-                if (MapGenerator.gridArray[i][j].tag == "end")
+                if (gridArray[i][j].tag == "end")
                 {
                     endNode = vertices[i][j];
                 }
@@ -71,7 +74,7 @@ public abstract class PathFindingAlgorithm
     {
         if (paintNode != startNode && paintNode != endNode)
         {
-            MapGenerator.gridArray[paintNode.x][paintNode.y].GetComponent<Renderer>()
+            gridArray[paintNode.x][paintNode.y].GetComponent<Renderer>()
                     .material.color = color;
         }
     }

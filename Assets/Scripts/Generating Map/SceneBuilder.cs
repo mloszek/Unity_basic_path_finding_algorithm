@@ -4,7 +4,7 @@ using UnityEngine;
 public class SceneBuilder : MonoBehaviour
 {
     public GameObject field;
-    public GameObject obstacle;
+    public GameObject[] obstacles;
     public GameObject start;
     public GameObject end;
 
@@ -27,7 +27,7 @@ public class SceneBuilder : MonoBehaviour
         {
             clearMap = new ClearMapGenerator(MapProperties.height, MapProperties.width, MapProperties.difficulty);
             clearMap.CreateMap(field);
-            clearMap.CreateObstacles(obstacle);
+            clearMap.CreateObstacles(obstacles);
             clearMap.CreateStartAndFinish(start, end);
         }
         else
@@ -35,7 +35,7 @@ public class SceneBuilder : MonoBehaviour
             SaveLoadScript.Load();
             loadedMap = new LoadedMapGenerator(MapProperties.height, MapProperties.width);
             loadedMap.CreateMap(field);
-            loadedMap.CreateObstacles(obstacle);
+            loadedMap.CreateObstacles(obstacles);
             loadedMap.CreateStartAndFinish(start, end);
         }
     }

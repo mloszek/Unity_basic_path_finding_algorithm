@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DepthFirstAlgorithm : PathFindingAlgorithm
 {
-    public DepthFirstAlgorithm(int height, int width) : base(height, width)
+    public DepthFirstAlgorithm(int height, int width, GameObject[][] passedArray) : base(height, width, passedArray)
     {
         vertices = new CustomNode[height][];
         results = new List<CustomNode>();
