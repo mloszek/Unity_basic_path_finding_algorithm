@@ -35,17 +35,17 @@ public abstract class PathFindingAlgorithm
 
                 vertices[i][j] = new CustomNode(i, j);
 
-                if (gridArray[i][j].tag != "obstacle")
+                if (!gridArray[i][j].GetComponent<TileProperties>().currentTileType.Equals(TileType.OBSTACLE))
                 {
                     vertices[i][j].isWalkable = true;
                 }
 
-                if (gridArray[i][j].tag == "start")
+                if (gridArray[i][j].GetComponent<TileProperties>().currentTileType.Equals(TileType.START))
                 {
                     startNode = vertices[i][j];
                 }
 
-                if (gridArray[i][j].tag == "end")
+                if (gridArray[i][j].GetComponent<TileProperties>().currentTileType.Equals(TileType.END))
                 {
                     endNode = vertices[i][j];
                 }

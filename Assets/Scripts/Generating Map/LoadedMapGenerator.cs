@@ -13,9 +13,9 @@ public class LoadedMapGenerator : MapGenerator
         base.CreateMap(field);
     }
 
-    public override void CreateObstacles(GameObject[] obstacle)
+    public override void CreateObstacles(GameObject obstacle)
     {
-        //DrawMapElements('o', obstacle);
+        DrawMapElements('o', obstacle);
     }
 
     public override void CreateStartAndFinish(GameObject start, GameObject end)

@@ -123,7 +123,7 @@ public class IngameMenuScript : MonoBehaviour
         {
             for (int j = 0; j < MapProperties.width; j++)
             {
-                if (MapGenerator.gridArray[i][j].tag == "field")
+                if (MapGenerator.gridArray[i][j].GetComponent<TileProperties>().currentTileType.Equals(TileType.FIELD))
                 {
                     MapGenerator.gridArray[i][j].GetComponent<Renderer>().material.color = Color.white;
                 }

@@ -1465,11 +1465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field: {fileID: 1981556332234196, guid: ed1f177452e03db43a394a51149e00de, type: 2}
-  obstacles:
-  - {fileID: 1198603444836300, guid: 8dd8880731a987c47a3aea02f020598a, type: 2}
-  - {fileID: 1005796001906016, guid: cca35294c110d724f9df1adcc24dc839, type: 2}
-  - {fileID: 1430066896080632, guid: 1390e68cf670a464a837a98dc2028e4b, type: 2}
-  - {fileID: 1500375643704496, guid: 11d52d2a6043ca349a6688a0244fcc39, type: 2}
+  obstacle: {fileID: 1981556332234196, guid: 0d3ecbacfc44c974fad2e8449b4a4535, type: 2}
   start: {fileID: 1981556332234196, guid: d9f59f9447cb2814387306a3ca454b38, type: 2}
   end: {fileID: 1981556332234196, guid: 9ca2eabd62ed9274891ffeca9516d6ce, type: 2}
 --- !u!1 &1274995010

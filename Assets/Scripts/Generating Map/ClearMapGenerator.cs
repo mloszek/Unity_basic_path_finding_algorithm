@@ -2,7 +2,6 @@
 
 public class ClearMapGenerator : MapGenerator
 {
-    private GameObject[] m_obstacle;
     private int MapDifficulty;
 
     public ClearMapGenerator(int height, int width, int difficulty) : base(height, width)
@@ -17,30 +16,48 @@ public class ClearMapGenerator : MapGenerator
         base.CreateMap(field);
     }
 
-    public override void CreateObstacles(GameObject[] obstacles)
+    public override void CreateObstacles(GameObject obstacle)
     {
-        m_obstacle = obstacles;
-
+        Obstacle obstacleToPlace = null;
         var amountOfObstacles = ((MapHeight * MapWidth) / MapDifficulty);
-        var randY = 0.0f;
-        var randX = 0.0f;
+        var randY = 0;
+        var randX = 0;
         var randObstacle = 0;
-        var spaceTaken = 0;
+        var actualObstacleSpace = 0;
 
         while (amountOfObstacles > 0)
         {
-
-            randY = Random.Range(0.0f,  MapHeight * 1.1f - 1f);
-            randX = Random.Range(0.0f, MapWidth * 1.1f - 1f);
+            randY = Random.Range(0,  MapHeight);
+            randX = Random.Range(0, MapWidth);
             randObstacle = Random.Range(0, 4);
 
-            Object.Instantiate(obstacles[randObstacle], new Vector3(randX, 0.0f, randY), Quaternion.identity);
-
-
-            spaceTaken = randObstacle > 2 ? 4 : randObstacle == 0 ? 0 : 2;
-            amountOfObstacles -= spaceTaken;
+            switch (randObstacle)
+            {
+                case 0:
+                   obstacleToPlace =  new Obstacle1x1(gridArray, randY, randX);
+                    break;
+                case 1:
+                    obstacleToPlace = new Obstacle1x2(gridArray, randY, randX);
+                    break;
+                case 2:
+                    obstacleToPlace = new Obstacle2x1(gridArray, randY, randX);
+                    break;
+                case 3:
+                    obstacleToPlace = new Obstacle2x2(gridArray, randY, randX);
+                    break;
+                default:
+                    obstacleToPlace = new Obstacle1x1(gridArray, randY, randX);
+                    break;
+            }
+            
+            if (obstacleToPlace.CheckIfFits())
+            {
+                obstacleToPlace.PlaceObstacle(obstacle);
+                actualObstacleSpace = obstacleToPlace.GetSizeOfObstacle();
+                amountOfObstacles -= actualObstacleSpace;
+            }            
         }
-    }
+    }  
 
     public override void CreateStartAndFinish(GameObject start, GameObject end)
     {
@@ -49,7 +66,7 @@ public class ClearMapGenerator : MapGenerator
         int randomX = Random.Range(0, (int) MapWidth);
         int randomY = Random.Range(0, (int) MapHeight);
 
-        while (gridArray[randomY][randomX].tag == "obstacle")
+        while (gridArray[randomY][randomX].GetComponent<TileProperties>().currentTileType.Equals(TileType.OBSTACLE))
         {
             randomX = Random.Range(0, (int) MapWidth);
             randomY = Random.Range(0, (int) MapHeight);
@@ -63,7 +80,7 @@ public class ClearMapGenerator : MapGenerator
         int finishRandomX = randomX;
         int finishRandomY = randomY;
 
-        while (finishRandomX == randomX && finishRandomY == randomY)
+        while (!gridArray[finishRandomY][finishRandomX].GetComponent<TileProperties>().currentTileType.Equals(TileType.FIELD))
         {
             finishRandomX = Random.Range(0, (int) MapWidth);
             finishRandomY = Random.Range(0, (int) MapHeight);

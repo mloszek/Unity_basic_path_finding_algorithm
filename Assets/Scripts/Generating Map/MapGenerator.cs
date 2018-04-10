@@ -2,12 +2,12 @@
 
 public abstract class MapGenerator
 {
-    protected static float MapHeight;
-    protected static float MapWidth;
+    protected static int MapHeight;
+    protected static int MapWidth;
 
     public static GameObject[][] gridArray;
 
-    public MapGenerator(float height, float width)
+    public MapGenerator(int height, int width)
     {
         MapHeight = height;
         MapWidth = width;        
@@ -19,7 +19,7 @@ public abstract class MapGenerator
     }
 
     public abstract void CreateStartAndFinish(GameObject start, GameObject finish);
-    public abstract void CreateObstacles(GameObject[] obstacle);
+    public abstract void CreateObstacles(GameObject obstacle);
 
     protected void GenerateGrid(GameObject field, out GameObject[][] gridArray)
     {
